@@ -28,7 +28,7 @@ import sys
 
 
 
-DELETED_RE = re.compile('#\s*deleted:.*')
+DELETED_RE = re.compile('#?\s*deleted:.*')
 
 def commit(control_config, hot_files, quiet_mins):
     # change to the project directory, necessary to find the .flashbake file and
@@ -44,7 +44,7 @@ def commit(control_config, hot_files, quiet_mins):
     _handle_fatal(hot_files, git_status)
 
     # in particular find the existing entries that need a commit
-    pending_re = re.compile('#\s*(renamed|copied|modified|new file):.*')
+    pending_re = re.compile('#?\s*(renamed|copied|modified|new file):.*')
 
     now = datetime.datetime.today()
     quiet_period = datetime.timedelta(minutes=quiet_mins)
